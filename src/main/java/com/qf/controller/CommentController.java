@@ -3,9 +3,9 @@ package com.qf.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.qf.pojo.CommentInfo;
-import com.qf.pojo.User;
+//import com.qf.pojo.UserInfo;
+import com.qf.pojo.UserInfo;
 import com.qf.service.CommentService;
-import com.qf.service.UserService;
 import com.qf.vo.CommentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,8 +20,8 @@ import java.util.List;
 public class CommentController {
     @Autowired
     CommentService commentService;
-    @Autowired
-    UserService userService;
+//    @Autowired
+//    UserService userService;
 
 
     @RequestMapping("allComment")
@@ -38,7 +38,7 @@ public class CommentController {
 
     @RequestMapping("addComment")
     public Object addComment(@RequestBody CommentInfo commentInfo ,HttpSession session){
-       User user = (User) session.getAttribute("userInfo");
+        UserInfo user = (UserInfo) session.getAttribute("userInfo");
 //       if (user==null){
 //           return "login";
 //       }
@@ -61,15 +61,15 @@ public class CommentController {
     }
     @RequestMapping("deleteCommentByComId")
     public Object deleteCommentByComId(@RequestBody CommentInfo commentInfo,HttpSession session){
-        User user = (User) session.getAttribute("userInfo");
+        UserInfo user = (UserInfo) session.getAttribute("userInfo");
         if (user==null){
             return "login";
         }
         //保证程序健壮性
-        User userInfo = userService.checkName(user);
-        if (userInfo==null){
-            return false;
-        }
+//        UserInfo userInfo = userService.checkName(user);
+//        if (userInfo==null){
+//            return false;
+//        }
         //获得个人信息
         //判断是不是本人,不是本人不可以删除
         if (user.getUserId()!=commentInfo.getUserId()){

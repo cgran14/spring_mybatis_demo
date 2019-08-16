@@ -3,12 +3,10 @@ package com.qf.controller;
 import com.qf.pojo.ReplyInfo;
 import com.qf.pojo.UserInfo;
 import com.qf.service.ReplyService;
-import com.qf.service.UserService;
 import com.qf.vo.ReplyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
@@ -19,8 +17,8 @@ public class ReplyController {
 
     @Autowired
     ReplyService replyService;
-    @Autowired
-    UserService userService;
+//    @Autowired
+//    UserService userService;
 
 
     @RequestMapping("getReplyByComId")
@@ -39,10 +37,10 @@ public class ReplyController {
             return "login";
         }
         //保证程序健壮性
-        UserInfo userInfo = userService.checkName(user);
-        if (userInfo==null){
-            return false;
-        }
+//        UserInfo userInfo = userService.checkName(user);
+//        if (userInfo==null){
+//            return false;
+//        }
 //        replyInfo.setUserId(3);
 //        replyInfo.setNickName("zzg");
 ////        replyInfo.setUserId(user.getUserId());
@@ -61,10 +59,10 @@ public class ReplyController {
             return "login";
         }
         //保证程序健壮性
-        UserInfo userInfo = userService.checkName(user);
-        if (userInfo==null){
-            return false;
-        }
+//        UserInfo userInfo = userService.checkName(user);
+//        if (userInfo==null){
+//            return false;
+//        }
         //获得个人信息
         //判断是不是本人,不是本人不可以删除
         if (user.getUserId()!=replyInfo.getUserId()){
